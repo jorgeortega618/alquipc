@@ -22,7 +22,7 @@ La empresa **ALQUIPC** presta el servicio de alquiler de equipos de cómputo por
 
 ##  Formas de Ejecutar
 
-### 1. Interfaz Gráfica (Recomendada) 
+### 1. Interfaz Gráfica 
 ```bash
 python alquipc_gui.py
 ```
@@ -51,7 +51,7 @@ Los ejecutables se crean en la carpeta `ejecutables/` y funcionan sin necesidad 
 
 ##  Campos Requeridos
 
-El sistema ahora incluye información completa del cliente:
+El sistema incluye información completa del cliente:
 
 - **ID Cliente**: Identificador único del cliente
 - **Teléfono**: Número de contacto (acepta números, espacios, guiones y paréntesis)
