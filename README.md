@@ -1,8 +1,19 @@
-# ALQUIPC - Facturación de alquiler de portátiles
+# 💻 ALQUIPC - Facturación de Alquiler de Portátiles
 
 ## 📖 Descripción del Proyecto
 
 **ALQUIPC** (Alquilamos Su PC) es una empresa de alquiler de computadores portátiles que necesita un sistema de facturación para sus servicios.
+
+### 🛠️ Tecnología
+Aplicación web desarrollada con **Streamlit**, un framework de Python diseñado para crear aplicaciones web interactivas de forma rápida y sencilla.
+
+### ✨ Características
+- ✅ **Aplicación Web Moderna** - Accesible desde cualquier navegador
+- ✅ **Despliegue en la nube GRATIS** - Streamlit Cloud, Railway, Render
+- ✅ **Interfaz responsiva** - Funciona en móvil, tablet y desktop
+- ✅ **Sin instalación requerida** - Solo necesitas un navegador web
+- ✅ **Validación en tiempo real** - Verificación automática de datos
+- ✅ **Descarga de cotizaciones** - Exporta en TXT y JSON
 
 ### 🏢 Sobre la Empresa
 La empresa **ALQUIPC** presta el servicio de alquiler de equipos de cómputo portátiles por días (no por horas). Los clientes llaman a la línea gratuita para solicitar equipos, y la operadora les asigna un ID-cliente único para la facturación.
@@ -20,34 +31,25 @@ La empresa **ALQUIPC** presta el servicio de alquiler de equipos de cómputo por
 - **Compromiso ambiental**: Sin impresión de recibos (solo envío por email)
 - **Información completa**: El sistema muestra todos los detalles del alquiler, descuentos/incrementos y valor total
 
-##  Formas de Ejecutar
+## 🚀 Inicio Rápido
 
-### 1. Interfaz Gráfica 
-```bash
-python alquipc_gui.py
-```
-O simplemente hacer doble clic en `ejecutar_alquipc.bat` y seleccionar opción 1.
+### Ejecución Local
 
-### 2. Línea de Comandos 
+**Opción 1: Script Automático (Windows)**
 ```bash
-python alquipc_cli.py --id C-001 --telefono "3008000" --email "jorge@gmail.com" --equipos 3 --dias 2 --extra 1 --ubicacion fuera --json
+ejecutar_streamlit.bat
 ```
 
-### 3. Script Interactivo 
-Hacer doble clic en `ejecutar_alquipc.bat` para menú interactivo con opciones:
-- Interfaz gráfica
-- Línea de comandos guiada
-- Ejemplo rápido
-
-##  Generar Ejecutables (.exe)
-Hacer doble clic en `crear_ejecutable.bat` o ejecutar:
+**Opción 2: Línea de Comandos**
 ```bash
-pip install pyinstaller
-pyinstaller --onefile --windowed --name ALQUIPC_GUI alquipc_gui.py
-pyinstaller --onefile --name ALQUIPC_CLI alquipc_cli.py
+# 1. Instalar dependencias (solo la primera vez)
+pip install -r requirements.txt
+
+# 2. Ejecutar la aplicación
+streamlit run alquipc_streamlit.py
 ```
 
-Los ejecutables se crean en la carpeta `ejecutables/` y funcionan sin necesidad de tener Python instalado.
+La aplicación se abrirá automáticamente en tu navegador en `http://localhost:8501`
 
 ##  Campos Requeridos
 
@@ -61,10 +63,66 @@ El sistema incluye información completa del cliente:
 - **Días adicionales**: Extensión del alquiler (con 2% descuento)
 - **Ubicación**: ciudad (0%), fuera (+5%), local (-5%)
 
+## 🌐 Despliegue en Línea
+
+### Streamlit Cloud (Recomendado - GRATIS)
+
+**Requisitos:**
+- Cuenta de GitHub
+- Repositorio público con tu código
+
+**Pasos:**
+
+1. **Sube tu código a GitHub**
+   ```bash
+   git add .
+   git commit -m "Deploy ALQUIPC"
+   git push origin main
+   ```
+
+2. **Configura Streamlit Cloud**
+   - Ve a [share.streamlit.io](https://share.streamlit.io)
+   - Inicia sesión con GitHub y autoriza el acceso
+   - Clic en "New app"
+   - Selecciona tu repositorio: `jorgeortega618/alquipc`
+   - Branch: `main`
+   - Main file: `alquipc_streamlit.py`
+   - Clic en "Deploy"
+
+3. **¡Listo! 🎉**
+   - Tu app estará en: `https://[tu-usuario]-alquipc.streamlit.app`
+   - Se actualiza automáticamente con cada push
+
+### Alternativas de Despliegue Gratuito
+
+**Railway** (railway.app)
+- Conecta tu GitHub y selecciona el repositorio
+- Railway detecta automáticamente Streamlit
+- Usa el archivo `Procfile` incluido en el proyecto
+
+**Render** (render.com)
+- Conecta GitHub → "New Web Service"
+- Build Command: `pip install -r requirements.txt`
+- Start Command: `streamlit run alquipc_streamlit.py --server.port=$PORT --server.address=0.0.0.0`
+
+## 📂 Estructura del Proyecto
+
+```
+alquipc/
+├── core.py                    # Lógica del negocio
+├── alquipc_streamlit.py       # Aplicación web
+├── requirements.txt           # Dependencias Python
+├── Procfile                   # Configuración para despliegue
+├── ejecutar_streamlit.bat     # Script de inicio (Windows)
+├── .streamlit/
+│   └── config.toml            # Configuración de tema
+└── README.md                  # Documentación
+```
+
 ## 🔄 Flujo de Trabajo
 
 1. **Cliente llama** a la línea gratuita de ALQUIPC
-2. **Operadora solicita**:
+2. **Operadora ingresa**:
    - Información del cliente (ID, teléfono, email)
    - Número de equipos a alquilar (mínimo 2)
    - Días iniciales de alquiler
@@ -73,4 +131,47 @@ El sistema incluye información completa del cliente:
    - Costo base (equipos × días × $35,000)
    - Ajustes por ubicación (+5% fuera, -5% local)
    - Descuentos por días adicionales (2% por día extra)
-4. **Resultado**: Cotización completa enviada por email (sin impresión)
+4. **Resultado**: Cotización completa con opción de descarga (sin impresión)
+
+## 🔧 Solución de Problemas
+
+### Error: "streamlit no encontrado"
+```bash
+pip install streamlit
+```
+
+### Error: "ModuleNotFoundError: No module named 'core'"
+Asegúrate de estar en el directorio correcto:
+```bash
+cd ruta/al/proyecto/alquipc
+```
+
+### La app no se abre en el navegador
+Abre manualmente: http://localhost:8501
+
+### Puerto ocupado
+```bash
+streamlit run alquipc_streamlit.py --server.port=8502
+```
+
+## 🎨 Características de la Interfaz
+
+- **Formularios intuitivos** - Layout en dos columnas
+- **Selector visual de ubicación** - Con iconos descriptivos
+- **Tabs organizadas** - Resumen, Detalles, JSON
+- **Métricas visuales** - Cards con valores destacados
+- **Descarga de archivos** - TXT y JSON
+- **Validación automática** - Mensajes de error claros
+- **Diseño responsivo** - Funciona en móvil, tablet y desktop
+
+## 🛠️ Requisitos Técnicos
+
+- Python 3.8 o superior
+- Streamlit 1.28.0 o superior
+- Navegador web moderno (Chrome, Firefox, Safari, Edge)
+
+---
+
+**🌱 Compromiso ambiental: Sin impresión de recibos**
+
+ALQUIPC © 2025 - Sistema de Facturación de Alquiler de Portátiles
